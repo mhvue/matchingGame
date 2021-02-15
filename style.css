@@ -15,26 +15,38 @@ h1,h5{
     text-align: center;
 }
 
-.back-card{
+
+.front-card,.back-card{
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
 }
 
 .card-content{
     position: relative;
-    background: blue;
-    transform-style: flat;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
     transition: transform 3s;
-  
+    
 }
+
+
 .card:hover .card-content{
     transform: rotateY(.25turn);
 }
 
 .front-card{
-    background: green;
-    transform: rotateY(.25turn);
+    background-color: green;
+}
+
+.back-card{
+    background-color: blue;
+    transform: rotateY(180deg);
+    backface-visibility:visible;
 }
