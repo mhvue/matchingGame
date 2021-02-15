@@ -1,6 +1,12 @@
 .card{
     height: 150px;
     width: 100px;
-    float: right;
-    margin-right: 5px;
+    margin-top: 10px;
+}
+
+.container{
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(5, 1fr);
+    
 }
