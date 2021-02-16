@@ -42,9 +42,8 @@ h1,h5{
 .back-card{
     background-color: blue;
     transform: rotateY(180deg);
-    backface-visibility:visible;
 }
 
-.card:hover .card-content{
+.active{
     transform: rotateY(180deg);
 }
