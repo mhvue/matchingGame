@@ -35,12 +35,6 @@ h1,h5{
     transition: transform 3s;
     
 }
-
-
-.card:hover .card-content{
-    transform: rotateY(.25turn);
-}
-
 .front-card{
     background-color: green;
 }
@@ -49,4 +43,8 @@ h1,h5{
     background-color: blue;
     transform: rotateY(180deg);
     backface-visibility:visible;
+}
+
+.card:hover .card-content{
+    transform: rotateY(180deg);
 }
