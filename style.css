@@ -15,6 +15,11 @@ h1,h5{
     text-align: center;
 }
 
+h2{
+    text-align: center;
+    margin-top: 40px;
+   
+}
 
 .front-card,.back-card{
     position: absolute;
@@ -40,7 +45,7 @@ h1,h5{
 }
 
 .back-card{
-    background-color: blue;
+    background-color: lightblue;
     transform: rotateY(180deg);
 }
 
