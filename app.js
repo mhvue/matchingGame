@@ -26,6 +26,7 @@ sorted.forEach((num, index) =>{
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
+    
     card.addEventListener("click",function(e){
         //toggle class of active on card-content
        card.classList.toggle("active");
@@ -37,13 +38,11 @@ allCards.forEach(card =>{
 
          if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
             console.log(collectNum[0],collectNum[1])
-            console.log("win!")
             score++;
             scoreCard.textContent = score;
-    
+            document.getElementById("msgModal").showModal()
             collectNum = []; //reset length of collectNum back to 0
-            //get cards that matched to gray out 
-            //add grayout class to those cards by attr 
+            //get cards that matched to gray out by add grayout class
             card.children[1].classList.add("grayOut");
             //reset score back to 0 if game is all done
             console.log(collectNum)
@@ -52,7 +51,6 @@ allCards.forEach(card =>{
             console.log("no match")
             collectNum = []; //reset length of collectNum back to 0
             //since cards did not match, flip back to green side 
-            e.target.classList.remove("active")
             console.log(collectNum)
         }
     
