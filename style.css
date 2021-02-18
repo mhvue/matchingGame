@@ -52,3 +52,7 @@ h2{
 .active{
     transform: rotateY(180deg);
 }
+
+.grayOut{
+    background-color: gray;
+}
