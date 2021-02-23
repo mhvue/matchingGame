@@ -49,26 +49,17 @@ allCards.forEach(card =>{
             scoreCard.textContent = score;
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(grayOut,2000)
-            //reset score back to 0 if game is all done
-            console.log(collectNum)
-            
         }
         else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){
             console.log("no match")
             collectNum = []; //reset length of collectNum back to 0
-            card.classList.remove("active")
-            // for(let i = 0; i < cardInfo.length; i++){
-            //     console.log(cardInfo[i]);
-            //     //since cards did not match, flip back to green side 
-
-            //  }
-            console.log(collectNum)
-            console.log(cardInfo)
+            setTimeout(turnCard,2000)
         }
     
     });
 });
 
+//gray out cards that matched and have modal pop up
 function grayOut(){
     modal.show();
     for(let i = 0; i < cardInfo.length; i++){
@@ -77,6 +68,17 @@ function grayOut(){
     cardInfo = []
 };
 
+//if no match, turn card back to green side(front side)
+function turnCard(){
+    for(let i = 0; i < cardInfo.length; i++){
+        cardInfo[i].parentNode.classList.remove("active")
+    }
+    cardInfo = [];
+}
+
+//close out modal
 closeBtn.addEventListener("click",function(){
     modal.hide()
-})
+});
+
+//reset score back to 0 if game is all done
