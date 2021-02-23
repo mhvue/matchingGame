@@ -41,10 +41,7 @@ allCards.forEach(card =>{
        collectNum.push(parseInt(dataNum));
        cardInfo.push(backCard)
      
-        //gotta make sure can't click on same card twice
-
          if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
-            console.log(collectNum[0],collectNum[1])
             score++;
             scoreCard.textContent = score;
             collectNum = []; //reset length of collectNum back to 0
@@ -55,6 +52,10 @@ allCards.forEach(card =>{
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(turnCard,2000)
         }
+
+        //NEXT STEP
+        //gotta make sure can't click on same card twice
+
     
     });
 });
@@ -81,4 +82,4 @@ closeBtn.addEventListener("click",function(){
     modal.hide()
 });
 
-//reset score back to 0 if game is all done
+//LAST STEP reset score back to 0 if game is all done
