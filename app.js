@@ -45,23 +45,20 @@ allCards.forEach(card =>{
             scoreCard.textContent = score;
             // document.getElementById("msgModal").showModal()
             collectNum = []; //reset length of collectNum back to 0
-            //get cards that matched to gray out by add grayout class
-            //setTimeOut to add gray out 
-            setTimeout(function(){
-                for(let i = 0; i < cardInfo.length; i++){
-                 grayOut(cardInfo[i])
-             }},3000)
+            setTimeout(grayOut,3000)
             //reset score back to 0 if game is all done
             console.log(collectNum)
+            
         }
         else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){
             console.log("no match")
             collectNum = []; //reset length of collectNum back to 0
-            //since cards did not match, flip back to green side 
-            
-            for(let i = 0; i < cardInfo.length; i++){
-                console.log(cardInfo[i])
-             }
+            card.classList.remove("active")
+            // for(let i = 0; i < cardInfo.length; i++){
+            //     console.log(cardInfo[i]);
+            //     //since cards did not match, flip back to green side 
+
+            //  }
             console.log(collectNum)
             console.log(cardInfo)
         }
@@ -69,7 +66,10 @@ allCards.forEach(card =>{
     });
 });
 
- //gray out cards that matched 
-function grayOut(backCard){
-    backCard.classList.add("grayOut");
-}
+function grayOut(){
+    for(let i = 0; i < cardInfo.length; i++){
+    cardInfo[i].classList.add("grayOut")
+    }
+    cardInfo = []
+};
+
