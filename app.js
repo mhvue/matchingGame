@@ -8,6 +8,10 @@ const numArr = [1,1,2,2,3,3,4,4,5,5];
 let collectNum =[];
 let cardInfo = [];
 let score = 0;
+const modal = new bootstrap.Modal(document.getElementById("msgModal"));
+const closeBtn = document.querySelector(".close");
+
+
 
 //move or shuffle the array of numbers and add it to back-card 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -43,9 +47,8 @@ allCards.forEach(card =>{
             console.log(collectNum[0],collectNum[1])
             score++;
             scoreCard.textContent = score;
-            // document.getElementById("msgModal").showModal()
             collectNum = []; //reset length of collectNum back to 0
-            setTimeout(grayOut,3000)
+            setTimeout(grayOut,2000)
             //reset score back to 0 if game is all done
             console.log(collectNum)
             
@@ -67,9 +70,13 @@ allCards.forEach(card =>{
 });
 
 function grayOut(){
+    modal.show();
     for(let i = 0; i < cardInfo.length; i++){
     cardInfo[i].classList.add("grayOut")
     }
     cardInfo = []
 };
 
+closeBtn.addEventListener("click",function(){
+    modal.hide()
+})
