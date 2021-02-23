@@ -6,6 +6,7 @@ const backCards = document.querySelectorAll(".back-card");
 const scoreCard = document.getElementById("scoreHere")
 const numArr = [1,1,2,2,3,3,4,4,5,5];
 let collectNum =[];
+let cardInfo = [];
 let score = 0;
 
 //move or shuffle the array of numbers and add it to back-card 
@@ -26,13 +27,15 @@ sorted.forEach((num, index) =>{
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
-    
+   // console.log(card)
     card.addEventListener("click",function(e){
         //toggle class of active on card-content
        card.classList.toggle("active");
 
        const dataNum = card.children[1].children[0].dataset.num;
+       const backCard = card.children[1];
        collectNum.push(parseInt(dataNum));
+       cardInfo.push(backCard)
      
         //gotta make sure can't click on same card twice
 
@@ -40,10 +43,14 @@ allCards.forEach(card =>{
             console.log(collectNum[0],collectNum[1])
             score++;
             scoreCard.textContent = score;
-            document.getElementById("msgModal").showModal()
+            // document.getElementById("msgModal").showModal()
             collectNum = []; //reset length of collectNum back to 0
             //get cards that matched to gray out by add grayout class
-            card.children[1].classList.add("grayOut");
+            //setTimeOut to add gray out 
+            setTimeout(function(){
+                for(let i = 0; i < cardInfo.length; i++){
+                 grayOut(cardInfo[i])
+             }},3000)
             //reset score back to 0 if game is all done
             console.log(collectNum)
         }
@@ -51,12 +58,18 @@ allCards.forEach(card =>{
             console.log("no match")
             collectNum = []; //reset length of collectNum back to 0
             //since cards did not match, flip back to green side 
+            
+            for(let i = 0; i < cardInfo.length; i++){
+                console.log(cardInfo[i])
+             }
             console.log(collectNum)
+            console.log(cardInfo)
         }
     
     });
 });
 
- 
-
-//gray out cards that matched 
+ //gray out cards that matched 
+function grayOut(backCard){
+    backCard.classList.add("grayOut");
+}
