@@ -19,7 +19,6 @@ let sorted = numArr.sort( () => 0.5 - Math.random());
 console.log(sorted)
 
 sorted.forEach((num, index) =>{
-    //console.log(num);
     //input on each back card
    const info = `<h2 class='num' data-num=${num}>${num}</h2>`;
    const selector = `.card:nth-child(${index+1}) .back-card`;
@@ -31,24 +30,29 @@ sorted.forEach((num, index) =>{
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
-   // console.log(card)
     card.addEventListener("click",function(e){
         //toggle class of active on card-content
        card.classList.toggle("active");
 
+       //get the data attribute per back card 
        const dataNum = card.children[1].children[0].dataset.num;
+       //get back card clicked on 
        const backCard = card.children[1];
+
+       //pushing those data attribute into array to check for match 
        collectNum.push(parseInt(dataNum));
+       //pushing the backCard into array  so we 'store' type of card user clicked on
        cardInfo.push(backCard)
      
+       //checking if the two numbers match 
          if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
             score++;
             scoreCard.textContent = score;
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(grayOut,2000)
         }
+        //if NO match 
         else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){
-            console.log("no match")
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(turnCard,2000)
         }
@@ -83,3 +87,4 @@ closeBtn.addEventListener("click",function(){
 });
 
 //LAST STEP reset score back to 0 if game is all done
+//added amount of chances user gets before games ends
