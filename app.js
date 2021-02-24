@@ -19,6 +19,7 @@ let sorted = numArr.sort( () => 0.5 - Math.random());
 console.log(sorted)
 
 sorted.forEach((num, index) =>{
+
     //input on each back card
    const info = `<h2 class='num' data-num=${num}>${num}</h2>`;
    const selector = `.card:nth-child(${index+1}) .back-card`;
@@ -30,7 +31,7 @@ sorted.forEach((num, index) =>{
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
-    card.addEventListener("click",function(e){
+    card.addEventListener("click",function(){
         //toggle class of active on card-content
        card.classList.toggle("active");
 
@@ -42,27 +43,31 @@ allCards.forEach(card =>{
        //pushing those data attribute into array to check for match 
        collectNum.push(parseInt(dataNum));
        //pushing the backCard into array  so we 'store' type of card user clicked on
-       cardInfo.push(backCard)
+       cardInfo.push(backCard);
      
        //checking if the two numbers match 
-         if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
+    
+        if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
             score++;
             scoreCard.textContent = score;
             collectNum = []; //reset length of collectNum back to 0
-            setTimeout(grayOut,2000)
+            setTimeout(grayOut,2000);
+            //NEXT STEP
+            //gotta make sure can't click on same card twice
+
         }
         //if NO match 
         else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){
             collectNum = []; //reset length of collectNum back to 0
-            setTimeout(turnCard,2000)
+            setTimeout(turnCard,2000);
         }
+        
 
-        //NEXT STEP
-        //gotta make sure can't click on same card twice
-
-    
+         winGame();
     });
 });
+
+
 
 //gray out cards that matched and have modal pop up
 function grayOut(){
@@ -86,5 +91,13 @@ closeBtn.addEventListener("click",function(){
     modal.hide()
 });
 
+function winGame(){
+      //check for score 
+      if(score === 5){
+        const gameOver = "<h1>Nice Job! You found all matches!</h1>"
+        const gameMsg = document.getElementById("gameMsg");
+        gameMsg.innerHTML = gameOver;
+      }
+}
 //LAST STEP reset score back to 0 if game is all done
 //added amount of chances user gets before games ends
