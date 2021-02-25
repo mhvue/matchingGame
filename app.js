@@ -31,7 +31,8 @@ sorted.forEach((num, index) =>{
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
-    card.addEventListener("click",function(){
+    card.addEventListener("click",function game(){
+        //console.log(card)
         //toggle class of active on card-content
        card.classList.toggle("active");
 
@@ -44,22 +45,30 @@ allCards.forEach(card =>{
        collectNum.push(parseInt(dataNum));
        //pushing the backCard into array  so we 'store' type of card user clicked on
        cardInfo.push(backCard);
-     
+
+       //can't click on same card twice
+       cardInfo.forEach(c =>{
+        c.parentNode.removeEventListener("click",game)
+        });
+
+
        //checking if the two numbers match 
-    
         if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
             score++;
             scoreCard.textContent = score;
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(grayOut,2000);
-            //NEXT STEP
-            //gotta make sure can't click on same card twice
-
         }
         //if NO match 
         else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){
+            cardInfo.forEach(c =>{
+                console.log(c.parentNode)
+                c.parentNode.addEventListener("click",game)
+            });
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(turnCard,2000);
+            //adding click event back 
+            
         }
         
 
@@ -73,9 +82,10 @@ allCards.forEach(card =>{
 function grayOut(){
     modal.show();
     for(let i = 0; i < cardInfo.length; i++){
-    cardInfo[i].classList.add("grayOut")
+    cardInfo[i].classList.add("grayOut")    
     }
-    cardInfo = []
+    cardInfo = [];
+
 };
 
 //if no match, turn card back to green side(front side)
