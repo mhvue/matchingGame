@@ -51,7 +51,6 @@ allCards.forEach(card =>{
         c.parentNode.removeEventListener("click",game)
         });
 
-
        //checking if the two numbers match 
         if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
             score++;
@@ -61,13 +60,10 @@ allCards.forEach(card =>{
         }
         //if NO match 
         else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){
-            cardInfo.forEach(c =>{
-                console.log(c.parentNode)
-                c.parentNode.addEventListener("click",game)
-            });
+    
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(turnCard,2000);
-            //adding click event back 
+            // NEXT STEP adding click event back 
             
         }
         
