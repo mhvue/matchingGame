@@ -19,7 +19,6 @@ let sorted = numArr.sort( () => 0.5 - Math.random());
 console.log(sorted)
 
 sorted.forEach((num, index) =>{
-
     //input on each back card
    const info = `<h2 class='num' data-num=${num}>${num}</h2>`;
    const selector = `.card:nth-child(${index+1}) .back-card`;
@@ -46,11 +45,13 @@ allCards.forEach(card =>{
        //pushing the backCard into array  so we 'store' type of card user clicked on
        cardInfo.push(backCard);
 
-       //can't click on same card twice
-       cardInfo.forEach(c =>{
+     //can't click on same card twice
+        cardInfo.forEach(c =>{
+            console.log(c)
         c.parentNode.removeEventListener("click",game)
         });
 
+    
        //checking if the two numbers match 
         if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
             score++;
@@ -59,19 +60,17 @@ allCards.forEach(card =>{
             setTimeout(grayOut,2000);
         }
         //if NO match 
-        else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){
-    
+        else if (collectNum.length === 2 && collectNum[0] != collectNum[1]){   
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(turnCard,2000);
             // NEXT STEP adding click event back 
-            
+       
         }
-        
-
+    
          winGame();
     });
-});
 
+});
 
 
 //gray out cards that matched and have modal pop up
@@ -89,7 +88,9 @@ function turnCard(){
     for(let i = 0; i < cardInfo.length; i++){
         cardInfo[i].parentNode.classList.remove("active")
     }
+
     cardInfo = [];
+
 }
 
 //close out modal

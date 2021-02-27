@@ -1,17 +1,26 @@
+body{
+    background-color:#C7C7C8;
+    font-family: 'Playfair Display', serif;
+}
 .card{
     height: 150px;
     width: 100px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .container{
     display: grid;
     align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+    /* width: 200vh; */
+    height: 50vh;
+    border: 3px solid white;
+    padding: 10px;
+    background-image: url("./images/backgroundimage1.jpg");
     
 }
 
-h1,h5{
+h1,h5,h6{
     text-align: center;
 }
 
@@ -41,7 +50,7 @@ h2{
     
 }
 .front-card{
-    background-color: green;
+    background-color: pink;
 }
 
 .back-card{
@@ -54,5 +63,5 @@ h2{
 }
 
 .grayOut{
-    background-color: gray;
+    background-color: #B2A5A3;
 }
