@@ -11,8 +11,6 @@ let score = 0;
 const modal = new bootstrap.Modal(document.getElementById("msgModal"));
 const closeBtn = document.querySelector(".close");
 
-
-
 //move or shuffle the array of numbers and add it to back-card 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 let sorted = numArr.sort( () => 0.5 - Math.random());
@@ -45,6 +43,15 @@ allCards.forEach(card =>{
        //pushing the backCard into array  so we 'store' type of card user clicked on
        cardInfo.push(backCard);
 
+       //trying to add to check for class to remove click event 
+    //    if(card.classList.contains("active")){
+    //     console.log(card, "true")
+    //     card.removeEventListener("click", game)
+    //   }else{
+    //     console.log(card)
+    //     card.addEventListener("click", game)
+    //  }
+    
      //can't click on same card twice
         cardInfo.forEach(c =>{
             console.log(c)
@@ -71,6 +78,7 @@ allCards.forEach(card =>{
     });
 
 });
+
 
 
 //gray out cards that matched and have modal pop up
