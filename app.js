@@ -10,11 +10,13 @@ let cardInfo = [];
 let score = 0;
 const modal = new bootstrap.Modal(document.getElementById("msgModal"));
 const closeBtn = document.querySelector(".close");
+let startTime; 
 
 //move or shuffle the array of numbers and add it to back-card 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 let sorted = numArr.sort( () => 0.5 - Math.random());
 console.log(sorted)
+
 
 sorted.forEach((num, index) =>{
     //input on each back card
@@ -28,11 +30,12 @@ sorted.forEach((num, index) =>{
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
-    card.addEventListener("click",function game(){
-        //console.log(card)
+    start();
+    setTimeout(flip, 5000);
+     card.addEventListener("click",function game(){
         //toggle class of active on card-content
        card.classList.toggle("active");
-
+       card.classList.add("open")
        //get the data attribute per back card 
        const dataNum = card.children[1].children[0].dataset.num;
        //get back card clicked on 
@@ -43,22 +46,13 @@ allCards.forEach(card =>{
        //pushing the backCard into array  so we 'store' type of card user clicked on
        cardInfo.push(backCard);
 
-       //trying to add to check for class to remove click event 
-    //    if(card.classList.contains("active")){
-    //     console.log(card, "true")
-    //     card.removeEventListener("click", game)
-    //   }else{
-    //     console.log(card)
-    //     card.addEventListener("click", game)
-    //  }
-    
-     //can't click on same card twice
+        //can't click on same card twice
         cardInfo.forEach(c =>{
-            console.log(c)
+//console.log(c)
         c.parentNode.removeEventListener("click",game)
         });
-
-    
+       //trying to add to check for all cards class to remove click event
+       
        //checking if the two numbers match 
         if(collectNum.length === 2 && collectNum[0] == collectNum[1]){
             score++;
@@ -75,17 +69,33 @@ allCards.forEach(card =>{
         }
     
          winGame();
+
     });
 
 });
 
+//flip all the cards over 1st to show users the back  
+function start(){
+    startTime = setTimeout(function(){
+        allCards.forEach(card=>{
+        card.classList.add("active")
+    });
+}, 2000)
+}
 
-
+//flip the cards over now
+function flip(){
+    allCards.forEach(card=>{
+        card.classList.remove("active")
+    })
+}
 //gray out cards that matched and have modal pop up
 function grayOut(){
     modal.show();
     for(let i = 0; i < cardInfo.length; i++){
-    cardInfo[i].classList.add("grayOut")    
+        console.log(cardInfo)
+    cardInfo[i].classList.add("grayOut") 
+    cardInfo[i].parentNode.classList.remove("open")
     }
     cardInfo = [];
 
@@ -94,11 +104,10 @@ function grayOut(){
 //if no match, turn card back to green side(front side)
 function turnCard(){
     for(let i = 0; i < cardInfo.length; i++){
-        cardInfo[i].parentNode.classList.remove("active")
+        cardInfo[i].parentNode.classList.remove("active");
+        cardInfo[i].parentNode.classList.add("pickedBefore");
     }
-
     cardInfo = [];
-
 }
 
 //close out modal
