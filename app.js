@@ -34,7 +34,7 @@ startBtn.addEventListener("click", function(){
         start();
         setTimeout(flip, 5000);
     });
-})
+},{once: true})
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
