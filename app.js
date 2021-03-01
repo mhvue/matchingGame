@@ -10,6 +10,7 @@ let cardInfo = [];
 let score = 0;
 const modal = new bootstrap.Modal(document.getElementById("msgModal"));
 const closeBtn = document.querySelector(".close");
+const startBtn = document.querySelector(".btn")
 let startTime; 
 
 //move or shuffle the array of numbers and add it to back-card 
@@ -27,11 +28,16 @@ sorted.forEach((num, index) =>{
 
 });
 
+//when clicking on start the game. 
+startBtn.addEventListener("click", function(){
+    allCards.forEach(card =>{
+        start();
+        setTimeout(flip, 5000);
+    });
+})
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
-    start();
-    setTimeout(flip, 5000);
      card.addEventListener("click",function game(){
         //toggle class of active on card-content
        card.classList.toggle("active");
@@ -80,7 +86,7 @@ function start(){
         allCards.forEach(card=>{
         card.classList.add("active")
     });
-}, 2000)
+}, 1000)
 }
 
 //flip the cards over now
