@@ -10,7 +10,7 @@ let cardInfo = [];
 let score = 0;
 const modal = new bootstrap.Modal(document.getElementById("msgModal"));
 const closeBtn = document.querySelector(".close");
-const startBtn = document.querySelector(".btn")
+const startBtn = document.querySelector(".btn");
 let startTime; 
 
 //move or shuffle the array of numbers and add it to back-card 
@@ -18,15 +18,17 @@ let startTime;
 let sorted = numArr.sort( () => 0.5 - Math.random());
 console.log(sorted)
 
-
+function randomNum(){
 sorted.forEach((num, index) =>{
     //input on each back card
    const info = `<h2 class='num' data-num=${num}>${num}</h2>`;
    const selector = `.card:nth-child(${index+1}) .back-card`;
    const element = document.querySelector(selector);
    element.innerHTML = info;
-
 });
+}
+
+randomNum();
 
 //when clicking on start the game. 
 startBtn.addEventListener("click", function(){
@@ -53,10 +55,10 @@ allCards.forEach(card =>{
        cardInfo.push(backCard);
 
         //can't click on same card twice
-        cardInfo.forEach(c =>{
-//console.log(c)
-        c.parentNode.removeEventListener("click",game)
-        });
+//         cardInfo.forEach(c =>{
+// //console.log(c)
+//         c.parentNode.removeEventListener("click",game)
+//         });
        //trying to add to check for all cards class to remove click event
        
        //checking if the two numbers match 
@@ -84,24 +86,30 @@ allCards.forEach(card =>{
 function start(){
     startTime = setTimeout(function(){
         allCards.forEach(card=>{
-        card.classList.add("active")
+        card.classList.add("active");
     });
 }, 1000)
-}
+};
+
+
 
 //flip the cards over now
 function flip(){
     allCards.forEach(card=>{
-        card.classList.remove("active")
-    })
+        card.classList.remove("active");
+    });
+};
+
+function startOver(){
+    randomNum()
 }
 //gray out cards that matched and have modal pop up
 function grayOut(){
     modal.show();
     for(let i = 0; i < cardInfo.length; i++){
         console.log(cardInfo)
-    cardInfo[i].classList.add("grayOut") 
-    cardInfo[i].parentNode.classList.remove("open")
+    cardInfo[i].classList.add("grayOut"); 
+    cardInfo[i].parentNode.classList.remove("open");
     }
     cardInfo = [];
 
@@ -114,20 +122,27 @@ function turnCard(){
         cardInfo[i].parentNode.classList.add("pickedBefore");
     }
     cardInfo = [];
-}
+};
+
+function winGame(e){
+      //check for score 
+      if(score === 1){
+        const gameOver = "<h1>Nice Job! You found all matches!</h1>";
+        const gameMsg = document.getElementById("gameMsg");
+        const startAgain = '<button type="button" class="btn btn-warning id="startAgain">Start Again?</button>'
+        gameMsg.innerHTML = gameOver + startAgain;
+      }
+};
+
 
 //close out modal
 closeBtn.addEventListener("click",function(){
     modal.hide()
 });
 
-function winGame(){
-      //check for score 
-      if(score === 5){
-        const gameOver = "<h1>Nice Job! You found all matches!</h1>"
-        const gameMsg = document.getElementById("gameMsg");
-        gameMsg.innerHTML = gameOver;
-      }
-}
+document.addEventListener("click", function(e){
+    console.log(e.target.dataset.id)
+    console.log("yo")
+})
+
 //LAST STEP reset score back to 0 if game is all done
-//added amount of chances user gets before games ends

@@ -8,13 +8,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">  
 </head>
 <body>
     <br>
     <h1>Matching Game</h1>
     <h5>Score:<span id="scoreHere">0</span></h5>
-    <h6>Each card is numbered on the back. Find the matching numbers! Click Start to begin</h6>
+    <h6>Each card is numbered on the back. Find the matching numbers! 
+        <br>
+        Click Start to get a quick peek at each cards. 
+        Then it's all up your memory!</h6>
     <button type="button" class="btn btn-success">Start</button>
     <div class="container">
         <div class="card">
@@ -77,20 +83,21 @@
                 <div class="back-card"></div>
             </div>
         </div>
-
     </div>
+
+<footer><span id="imageCredit">Thanks to Unsplash for the background image</span></footer>
 
     <div class="modal" id="msgModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
+              <h5 class="modal-title">Good Job!</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p id="gameMsg">Good Job! Matched!</p>
+              <p id="gameMsg">You found a Match!</p>
             </div>
             <div class="modal-footer">
             </div>
