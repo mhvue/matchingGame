@@ -27,13 +27,18 @@ sorted.forEach((num, index) =>{
    const selector = `.card:nth-child(${index+1}) .back-card`;
    const element = document.querySelector(selector);
    element.innerHTML = info;
+
+   //removing gray color on back of cards 
+   if(element.classList.contains("grayOut")){
+       element.classList.remove("grayOut");
+   }
+   
 });
 };
 
 randomNum();
 
-
-
+function peek(){
 //when clicking on start the game. 
 startBtn.addEventListener("click", function(){
     allCards.forEach(card =>{
@@ -41,6 +46,10 @@ startBtn.addEventListener("click", function(){
         setTimeout(flip, 5000);
     });
 },{once: true})
+}
+
+peek()
+
 //now you add click event to each instance of .card-content
 //to get card to flip
 allCards.forEach(card =>{
@@ -120,12 +129,11 @@ function grayOut(){
 function turnCard(){
     for(let i = 0; i < cardInfo.length; i++){
         cardInfo[i].parentNode.classList.remove("active");
-        cardInfo[i].parentNode.classList.add("pickedBefore");
     }
     cardInfo = [];
 };
 
-function winGame(e){
+function winGame(){
       //check for score 
       if(score === 5){
         const gameOver = "<h1>Nice Job! You found all matches!</h1>";
@@ -143,11 +151,11 @@ closeBtn.addEventListener("click",function(){
 
 //started writing click for when game starts over 
 document.getElementById("gameMsg").addEventListener("click", function(e){
-    //console.log(e.target.classList)
+    //checking of class of btn startYellow
     if(e.target.classList[2] === "startYellow"){
         randomNum();
         flip();
-        //remove gray color
+        peek();
         modal.hide();
         
     }
