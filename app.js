@@ -43,8 +43,13 @@ function peek(){
 startBtn.addEventListener("click", function(e){
     e.target.classList.add("grayOut")
     allCards.forEach(card =>{
-        start();
-        setTimeout(flip, 5000);
+        if(card.children[1].classList.contains("grayOut")){
+            //don't flip
+        }else{
+            start();
+            setTimeout(flip, 5000);
+        }
+        
     });
 },{once: true})
 }
