@@ -15,10 +15,12 @@ let startTime;
 
 //move or shuffle the array of numbers and add it to back-card 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+
+
+function randomNum(){
 let sorted = numArr.sort( () => 0.5 - Math.random());
 console.log(sorted)
 
-function randomNum(){
 sorted.forEach((num, index) =>{
     //input on each back card
    const info = `<h2 class='num' data-num=${num}>${num}</h2>`;
@@ -26,9 +28,11 @@ sorted.forEach((num, index) =>{
    const element = document.querySelector(selector);
    element.innerHTML = info;
 });
-}
+};
 
 randomNum();
+
+
 
 //when clicking on start the game. 
 startBtn.addEventListener("click", function(){
@@ -100,9 +104,6 @@ function flip(){
     });
 };
 
-function startOver(){
-    randomNum()
-}
 //gray out cards that matched and have modal pop up
 function grayOut(){
     modal.show();
@@ -126,10 +127,10 @@ function turnCard(){
 
 function winGame(e){
       //check for score 
-      if(score === 1){
+      if(score === 5){
         const gameOver = "<h1>Nice Job! You found all matches!</h1>";
         const gameMsg = document.getElementById("gameMsg");
-        const startAgain = '<button type="button" class="btn btn-warning id="startAgain">Start Again?</button>'
+        const startAgain = '<button type="button" class="btn btn-warning startYellow">Start Again?</button>'
         gameMsg.innerHTML = gameOver + startAgain;
       }
 };
@@ -140,9 +141,16 @@ closeBtn.addEventListener("click",function(){
     modal.hide()
 });
 
-document.addEventListener("click", function(e){
-    console.log(e.target.dataset.id)
-    console.log("yo")
+//started writing click for when game starts over 
+document.getElementById("gameMsg").addEventListener("click", function(e){
+    //console.log(e.target.classList)
+    if(e.target.classList[2] === "startYellow"){
+        randomNum();
+        flip();
+        //remove gray color
+        modal.hide();
+        
+    }
 })
 
 //LAST STEP reset score back to 0 if game is all done
