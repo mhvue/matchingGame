@@ -68,6 +68,7 @@ h2{
 
 .grayOut{
     background-color: #B2A5A3;
+    pointer-events: none;
 }
 
 .btn{
@@ -79,4 +80,8 @@ h2{
 #imageCredit{
     position: absolute;
     bottom: 10px;
+}
+
+#peek{
+    font-style:italic;
 }

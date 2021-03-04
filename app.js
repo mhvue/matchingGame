@@ -40,7 +40,8 @@ randomNum();
 
 function peek(){
 //when clicking on start the game. 
-startBtn.addEventListener("click", function(){
+startBtn.addEventListener("click", function(e){
+    e.target.classList.add("grayOut")
     allCards.forEach(card =>{
         start();
         setTimeout(flip, 5000);
@@ -48,7 +49,7 @@ startBtn.addEventListener("click", function(){
 },{once: true})
 }
 
-peek()
+peek();
 
 //now you add click event to each instance of .card-content
 //to get card to flip
@@ -95,16 +96,15 @@ allCards.forEach(card =>{
 
 });
 
-//flip all the cards over 1st to show users the back  
+//flip all the cards over 1st to allow peek at the numbers on the back 
 function start(){
     startTime = setTimeout(function(){
         allCards.forEach(card=>{
         card.classList.add("active");
     });
-}, 1000)
+}, 1000);
+
 };
-
-
 
 //flip the cards over now
 function flip(){
@@ -133,9 +133,10 @@ function turnCard(){
     cardInfo = [];
 };
 
+//modal to show msg that user won game and ask if mbr like to start again 
 function winGame(){
       //check for score 
-      if(score === 5){
+      if(score === 1){
         const gameOver = "<h1>Nice Job! You found all matches!</h1>";
         const gameMsg = document.getElementById("gameMsg");
         const startAgain = '<button type="button" class="btn btn-warning startYellow">Start Again?</button>'
@@ -143,19 +144,21 @@ function winGame(){
       }
 };
 
-
 //close out modal
 closeBtn.addEventListener("click",function(){
     modal.hide()
 });
 
-//started writing click for when game starts over 
+//when user clicks Start Again btn on modal, game resets 
 document.getElementById("gameMsg").addEventListener("click", function(e){
     //checking of class of btn startYellow
     if(e.target.classList[2] === "startYellow"){
         randomNum();
         flip();
+        startBtn.classList.remove("grayOut")
         peek();
+        score = 0;
+        scoreCard.textContent = score;
         modal.hide();
         
     }
