@@ -13,11 +13,9 @@ const closeBtn = document.querySelector(".close");
 const startBtn = document.querySelector(".btn");
 let startTime; 
 
+function randomNum(){
 //move or shuffle the array of numbers and add it to back-card 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-
-
-function randomNum(){
 let sorted = numArr.sort( () => 0.5 - Math.random());
 console.log(sorted)
 
@@ -40,16 +38,10 @@ randomNum();
 
 function peek(){
 //when clicking on start the game. 
-startBtn.addEventListener("click", function(e){
-    e.target.classList.add("grayOut")
+startBtn.addEventListener("click", function(){
     allCards.forEach(card =>{
-        if(card.children[1].classList.contains("grayOut")){
-            //don't flip
-        }else{
-            start();
-            setTimeout(flip, 5000);
-        }
-        
+        start();
+        setTimeout(flip, 5000);
     });
 },{once: true})
 }
@@ -114,7 +106,12 @@ function start(){
 //flip the cards over now
 function flip(){
     allCards.forEach(card=>{
-        card.classList.remove("active");
+        if(card.children[1].classList.contains("grayOut")){
+            return;
+        }else{
+            card.classList.remove("active");
+
+        }
     });
 };
 
