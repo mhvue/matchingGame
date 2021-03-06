@@ -138,7 +138,7 @@ function turnCard(){
 //modal to show msg that user won game and ask if mbr like to start again 
 function winGame(){
       //check for score 
-      if(score === 1){
+      if(score === 5){
         const gameOver = "<h1>Nice Job! You found all matches!</h1>";
         const gameMsg = document.getElementById("gameMsg");
         const startAgain = '<button type="button" class="btn btn-warning startYellow">Start Again?</button>'
