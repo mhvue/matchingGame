@@ -6,3 +6,4 @@ Link to this project: <a href="https://mhvue.github.io/matchingGame/">Matching G
 
 ## TO DO:
 * Have more cards with more numbers to match
+* Fix click function so that once card is flipped to reveal number, click is disabled. 
