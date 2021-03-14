@@ -16,34 +16,37 @@ let startTime;
 function randomNum(){
 //move or shuffle the array of numbers and add it to back-card 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-let sorted = numArr.sort( () => 0.5 - Math.random());
-console.log(sorted)
+    let sorted = numArr.sort( () => 0.5 - Math.random());
+    console.log(sorted)
 
-sorted.forEach((num, index) =>{
-    //input on each back card
-   const info = `<h2 class='num' data-num=${num}>${num}</h2>`;
-   const selector = `.card:nth-child(${index+1}) .back-card`;
-   const element = document.querySelector(selector);
-   element.innerHTML = info;
+    sorted.forEach((num, index) =>{
+        //input on each back card
+    const info = `<h2 class='num' data-num=${num}>${num}</h2>`;
+    const selector = `.card:nth-child(${index+1}) .back-card`;
+    const element = document.querySelector(selector);
+    element.innerHTML = info;
 
-   //removing gray color on back of cards 
-   if(element.classList.contains("grayOut")){
-       element.classList.remove("grayOut");
-   }
-   
-});
+    //removing gray color on back of cards 
+    if(element.classList.contains("grayOut")){
+        element.classList.remove("grayOut");
+    };
+    
+    });
 };
 
 randomNum();
 
 function peek(){
-//when clicking on start the game. 
+//when clicking on peek btn to show cads in the game. 
 startBtn.addEventListener("click", function(){
     allCards.forEach(card =>{
         start();
         setTimeout(flip, 5000);
-    });
-},{once: true})
+        startBtn.classList.add("grayOut")
+     });
+    },{once: true});
+
+    
 }
 
 peek();
@@ -84,13 +87,9 @@ allCards.forEach(card =>{
             collectNum = []; //reset length of collectNum back to 0
             setTimeout(turnCard,2000);
             // NEXT STEP adding click event back 
-       
         }
-    
          winGame();
-
     });
-
 });
 
 //flip all the cards over 1st to allow peek at the numbers on the back 
@@ -141,14 +140,14 @@ function winGame(){
       if(score === 5){
         const gameOver = "<h1>Nice Job! You found all matches!</h1>";
         const gameMsg = document.getElementById("gameMsg");
-        const startAgain = '<button type="button" class="btn btn-warning startYellow">Start Again?</button>'
+        const startAgain = '<button type="button" class="btn btn-warning startYellow">Start Again?</button>';
         gameMsg.innerHTML = gameOver + startAgain;
-      }
+      };
 };
 
 //close out modal
 closeBtn.addEventListener("click",function(){
-    modal.hide()
+    modal.hide();
 });
 
 //when user clicks Start Again btn on modal, game resets 
@@ -157,13 +156,10 @@ document.getElementById("gameMsg").addEventListener("click", function(e){
     if(e.target.classList[2] === "startYellow"){
         randomNum();
         flip();
-        startBtn.classList.remove("grayOut")
+        startBtn.classList.remove("grayOut");
         peek();
         score = 0;
         scoreCard.textContent = score;
         modal.hide();
-        
     }
 })
-
-//LAST STEP reset score back to 0 if game is all done
